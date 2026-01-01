@@ -17,7 +17,8 @@ dist-ssr
 .env
 .env.*
 !.env.example
-
+# Environment variables
+.env
 # Local env tooling (may contain secrets)
 .envrc
 .direnv/
