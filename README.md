@@ -24,3 +24,4 @@ This project requires a TMDB API key at build time:
 - `npm run dev`
 - `npm run build`
 - `npm run preview`
+# midiflix
