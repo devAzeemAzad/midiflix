@@ -1,0 +1,42 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Local env files (may contain secrets)
+# NOTE: On Netlify, set VITE_TMDB_API_KEY in site Environment variables (not in repo).
+.env
+.env.*
+!.env.example
+# Environment variables
+.env
+# Local env tooling (may contain secrets)
+.envrc
+.direnv/
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Local Netlify folder
+.netlify
+
+# Local tooling caches
+.vite/
+.eslintcache
