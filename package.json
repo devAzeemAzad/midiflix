@@ -1,13 +1,13 @@
 {
-  "homepage": "http:://devAzeemAzad.github.io/midiflix",
+  "homepage": "http://devAzeemAzad.github.io/midiflix",
   "name": "midiflix",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "predeploy":"npm run build",
-    "deploy":"gh-pages -d build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
