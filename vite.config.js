@@ -4,7 +4,7 @@ import tailwindcss from "@tailwindcss/vite";
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/midiflix1/',
+  base: '/midiflix/',
   plugins: [react(),
     tailwindcss()
   ],

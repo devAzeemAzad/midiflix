@@ -3,7 +3,7 @@ import { PlusIcon, Star, Play, Info } from "lucide-react";
 import { Link } from "react-router-dom";
 
 
-const MovieHoverCard = ({ movie, genres, position, onMouseLeave, onMouseEnter }) => {
+const MovieHoverCard = ({ movie, genres = [], position, onMouseLeave, onMouseEnter }) => {
 
   const [isCardVisible, setIsCardVisible] = useState(false);
   useEffect(() => {
@@ -17,9 +17,9 @@ const MovieHoverCard = ({ movie, genres, position, onMouseLeave, onMouseEnter })
 
   
   const getGenreNamesFromIds = (genreIds) => {
-    if (!genreIds || !genres.length) return [];
+    if (!genreIds || !Array.isArray(genres) || genres.length === 0) return [];
     return genreIds
-      .map(id => genres.find(g => g.id === id)?.name)
+      .map((id) => genres.find((g) => g.id === id)?.name)
       .filter(Boolean);
   };
 
@@ -28,32 +28,29 @@ const MovieHoverCard = ({ movie, genres, position, onMouseLeave, onMouseEnter })
 
   if (!movie || !position) return null;
 
+  const detailsType = movie.media_type || (movie.title ? "movie" : "tv");
+  const detailsUrl = `/alldetails/${detailsType}/${movie.id}`;
+
   // Extract and format all needed data
   const displayedGenres = getGenreNamesFromIds(movie.genre_ids);
   const movieRating = (movie.vote_average || 0).toFixed(1);
   const releaseYear = movie.release_date || movie.first_air_date
     ? new Date(movie.release_date || movie.first_air_date).getFullYear()
     : "N/A";
-  const voteCountInThousands = (movie.vote_count / 1000).toFixed(1);
+  const voteCountInThousands = ((movie.vote_count || 0) / 1000).toFixed(1);
   const popularityScore = (movie.popularity || 0).toFixed(0);
-  const movieTitle = movie.original_title || movie.name;
+  const movieTitle = movie.original_title || movie.name || "Untitled";
   const movieDescription = movie.overview || "No description";
   const posterUrl = movie.backdrop_path
     ? `https://image.tmdb.org/t/p/w500${movie.backdrop_path}`
     : "https://via.placeholder.com/300x160?text=No+Image";
 
-  const handlePlay = () => {
-    const playType = movie.media_type || (movie.title ? 'movie' : 'tv');
-    const embedType = playType === 'tv' ? 'tv' : 'movie';
-    const url = `https://www.vidking.net/embed/${embedType}/${movie.id}`;
-    window.open(url, '_blank', 'noopener,noreferrer');
-  };
   return (
     <div
       onMouseLeave={onMouseLeave}
       onMouseEnter={onMouseEnter}
       style={{ left: `${position.x}px`, top: `${position.y - 300}px` }}
-      className={`absolute z-50 w-72 rounded-xl shadow-2xl overflow-hidden bg-linear-to-b from-gray-900 to-black backdrop-blur-lg pointer-events-auto transition-all duration-300 ${
+      className={`absolute z-50 w-72 rounded-xl shadow-2xl overflow-hidden bg-gradient-to-b from-gray-900 to-black backdrop-blur-lg pointer-events-auto transition-all duration-300 ${
         isCardVisible ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none"
       }`}
     >
@@ -65,7 +62,7 @@ const MovieHoverCard = ({ movie, genres, position, onMouseLeave, onMouseEnter })
           alt={movieTitle}
         />
         {/* GRADIENT OVERLAY ON IMAGE */}
-        <div className="absolute inset-0 bg-linear-to-t from-black via-black/40 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
         
         {/* RATING BADGE */}
         <div className="absolute top-2 right-2 flex items-center gap-1 bg-yellow-500 text-white px-2 py-1 rounded-full text-xs font-bold">
@@ -131,8 +128,10 @@ const MovieHoverCard = ({ movie, genres, position, onMouseLeave, onMouseEnter })
           </button>
 
           {/* DETAILS BUTTON */}
-          <Link target="_blank"
-            to={`/alldetails/${movie.media_type || (movie.title ? 'movie' : 'tv')}/${movie.id}`}
+          <Link
+            target="_blank"
+            rel="noopener noreferrer"
+            to={detailsUrl}
             title="Details"
             className="flex-1 bg-white/20 hover:bg-white/30 active:scale-95 py-2 rounded-lg transition-all text-white text-xs font-semibold flex items-center justify-center backdrop-blur-md pointer-events-auto cursor-pointer"
           >

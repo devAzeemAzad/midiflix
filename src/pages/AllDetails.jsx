@@ -112,12 +112,12 @@ const AllDetails = () => {
     );
   };
 
-  const safeSeason = Number.isFinite(Number(details.number_of_seasons)) ? Number(details.number_of_seasons) : 1;
-  const safeEpisode = Number.isFinite(Number(details.number_of_episodes)) ? Number(details.number_of_episodes) : 1;
 
+  
+  
   const watchUrl =
     type === 'tv' && season
-      ? `https://www.vidking.net/embed/${type}/${id}/${safeSeason}/${safeEpisode}?color=e50914&autoPlay=true&nextEpisode=true&episodeSelector=true`
+      ? `https://www.vidking.net/embed/${type}/${id}/5/1?color=e50914&autoPlay=true&nextEpisode=true&episodeSelector=true`
       : `https://www.vidking.net/embed/${type}/${id}?color=9146ff&autoPlay=true`;
 
   return (
@@ -164,7 +164,9 @@ const AllDetails = () => {
               </span>
 
               <a
-                href={watchUrl}
+                href={type === 'tv'
+      ? `https://www.vidking.net/embed/${type}/${id}/1/1?color=e50914&autoPlay=true&nextEpisode=true&episodeSelector=true`
+      : `https://www.vidking.net/embed/${type}/${id}?color=9146ff&autoPlay=true`}
                 target='_blank'
                 rel='noreferrer'
                 className='bg-linear-to-r from-yellow-500 via-orange-500 to-red-500 hover:from-yellow-400 hover:via-orange-500 hover:to-red-500 text-black px-8 py-3 rounded-xl font-extrabold text-lg transition-all shadow-xl flex items-center justify-center gap-2 w-full max-w-[320px]'
