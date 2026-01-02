@@ -1,9 +1,0 @@
-[build]
-  command = "npm run build"
-  publish = "dist"
-
-# React Router SPA fallback: allow direct navigation/refresh on client routes
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
