@@ -51,6 +51,7 @@ const MovieCategoriesSection = () => {
               <MovieCarouselHeader 
                 categoryType={category.categoryType} 
                 displayName={category.displayName}
+                categorydata={category.categoryEndpoint}
               />
               
               {/* CAROUSEL WITH MOVIES */}

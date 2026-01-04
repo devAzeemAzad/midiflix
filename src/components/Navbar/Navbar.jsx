@@ -19,7 +19,7 @@ const Navbar = () => {
           </Link>
           <div className="hidden md:flex text-l items-center gap-8">
             <Link to="/" className={LinkClass}>Home</Link>
-            <Link to="/movies" className={LinkClass}>Movies</Link>
+            <Link to="/movie/now_playing" className={LinkClass}>Movies</Link>
             <Link to="/series" className={LinkClass}>Series</Link>
             <Link to="/anime" className={LinkClass}>Anime</Link>
           </div>    

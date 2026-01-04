@@ -18,7 +18,7 @@ const App = () => {
       <main className="grow bg-black pt-16">
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<Home />} />
-          <Route path="/movies/" element={<Movies />} />
+          <Route path="movie/:categorydata?" element={<Movies />} />
           <Route path='/alldetails/:type/:id' element={<AllDetails/>} />
         </Routes>
       </main>
