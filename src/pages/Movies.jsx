@@ -42,6 +42,8 @@ const normalizeCategoryValue = (value) => {
   return value.startsWith("/") ? value : `/${value}`;
 };
 
+const toRouteParam = (value) => String(value ?? "").replace(/^\/+/, "");
+
 const Movies = () => {
 
   useEffect(() => {
@@ -58,6 +60,7 @@ const Movies = () => {
   const [page, setPage] = useState(1);
   const [movies, setMovies] = useState([]);
   const [sentinel, setSentinel] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const isGenreMode = Boolean(genre);
   const currentTitle = isGenreMode
@@ -81,17 +84,31 @@ const Movies = () => {
   useEffect(() => {
     if (!hasTmdbApiKey) return;
 
-    const fetchData = async () => {
-      const endpoint = isGenreMode ? "/discover/movie" : `movie${category}`;
-      const params = isGenreMode ? { with_genres: genre, language: "en-US", page } : { language: "en-US", page };
+    let cancelled = false;
 
-      const response = await getTMDBData(endpoint, params);
-      setMovies((prev) =>
-        page === 1 ? response || [] : [...prev, ...(response || [])]
-      );
+    const fetchData = async () => {
+      setIsLoading(true);
+      try {
+        const endpoint = isGenreMode ? "discover/movie" : `movie${category}`;
+        const params = isGenreMode
+          ? { with_genres: genre, language: "en-US", page }
+          : { language: "en-US", page };
+
+        const response = await getTMDBData(endpoint, params);
+        if (cancelled) return;
+
+        setMovies((prev) =>
+          page === 1 ? response || [] : [...prev, ...(response || [])]
+        );
+      } finally {
+        if (!cancelled) setIsLoading(false);
+      }
     };
 
     fetchData();
+    return () => {
+      cancelled = true;
+    };
   }, [page, category, genre, isGenreMode]);
 
   // Infinite scroll observer
@@ -100,6 +117,11 @@ const Movies = () => {
 
     const observer = new IntersectionObserver(
       (entries) => {
+        if (isLoading) return;
+        // Avoid auto-incrementing page when the grid is empty (e.g. right after
+        // changing a filter), which can cancel the page=1 fetch and look like
+        // "nothing loads".
+        if (movies.length === 0) return;
         if (entries[0]?.isIntersecting) setPage((p) => p + 1);
       },
       { threshold: 1 }
@@ -107,24 +129,8 @@ const Movies = () => {
 
     observer.observe(sentinel);
     return () => observer.disconnect();
-  }, [sentinel]);
+  }, [sentinel, isLoading, movies.length]);
 
-  if (!hasTmdbApiKey) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-black text-white px-6">
-        <div className="max-w-xl text-center">
-          <h1 className="text-2xl font-extrabold mb-2">TMDB API key missing</h1>
-          <p className="text-gray-400">
-            Set{" "}
-            <span className="font-semibold text-gray-200">
-              VITE_TMDB_API_KEY
-            </span>{" "}
-            in Netlify Environment variables and redeploy.
-          </p>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="min-h-screen py-5 px-4 bg-black relative overflow-hidden">
@@ -148,7 +154,7 @@ const Movies = () => {
               setCategory(value);
               setGenre("");
 
-              const categoryParam = String(value || "").replace(/^\//, "");
+              const categoryParam = toRouteParam(value);
               navigate(categoryParam ? `/movie/${categoryParam}` : "/movie");
             }}
             options={moviecategoryOptions}
@@ -161,7 +167,7 @@ const Movies = () => {
               setGenre(value);
 
               if (!value) {
-                const defaultParam = String(DEFAULT_CATEGORY).replace(/^\//, "");
+                const defaultParam = toRouteParam(DEFAULT_CATEGORY);
                 navigate(defaultParam ? `/movie/${defaultParam}` : "/movie");
               }
             }}

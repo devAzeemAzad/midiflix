@@ -11,7 +11,7 @@ const Navbar = () => {
     "text-gray-300 hover:text-white transition-colors duration-200 [&.active]:text-red-500 [&.active]:font-semibold";
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 bg-linear-to-b from-black/80 to-black/40 backdrop-blur-xl border-b border-red-500/20 transition-all duration-300">
+    <nav className="fixed top-0 left-0 w-full z-500 bg-linear-to-b from-black/80 to-black/40 backdrop-blur-xl border-b border-red-500/20 transition-all duration-300">
       <div className="max-w-400 mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <Link to="/" onClick={handleLinkClick} className="flex items-center gap-3 group">

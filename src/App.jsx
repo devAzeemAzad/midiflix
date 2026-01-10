@@ -7,6 +7,7 @@ import Navbar from './components/Navbar/Navbar'
 import tmdb from './api/tmdbclient'
 import axios from 'axios';
 import AllDetails from './pages/AllDetails'
+import Series from './pages/Series'
 
 const App = () => {
   const location = useLocation();
@@ -19,6 +20,7 @@ const App = () => {
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<Home />} />
           <Route path="movie/:categorydata?" element={<Movies />} />
+          <Route path="series/:categorydata?" element={<Series />} />
           <Route path='/alldetails/:type/:id' element={<AllDetails/>} />
         </Routes>
       </main>
