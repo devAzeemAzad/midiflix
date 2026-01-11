@@ -98,7 +98,7 @@ const MovieHoverCard = ({
 
         <div className="flex gap-2">
           <a
-            href={`https://www.vidking.net/embed/${type}/${movie.id}`}
+            href={ type === "movie" ? `https://www.vidking.net/embed/${type}/${movie.id}`: `https://www.vidking.net/embed/${type}/${movie.id}/1/1`}
             target="_blank"
             rel="noopener noreferrer"
             className="flex-1 cursor-pointer items-center justify-center gap-1 rounded-lg bg-red-600 py-2 text-xs font-semibold text-white transition-all hover:bg-red-700 active:scale-95 flex pointer-events-auto"
