@@ -31,7 +31,6 @@ const MovieCategoriesSection = () => {
         language: "en-us",
         page: 1,
       });
-      console.log(moviesData)
       setAllCategoryMovies(previousState => {
         const updatedState = { ...previousState }; // Copy old state (keep previous categories)
         updatedState[category.categoryEndpoint] = moviesData; // Add new category data
