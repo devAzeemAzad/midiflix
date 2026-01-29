@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import { SpeedInsights } from '@vercel/speed-insights/react';
 import Home from './pages/Home'
 import Movies from './pages/Movies'
 import Footer from './components/Footer/Footer'
 import Navbar from './components/Navbar/Navbar'
-import tmdb from './api/tmdbclient'
-import axios from 'axios';
 import AllDetails from './pages/AllDetails'
 import Series from './pages/Series'
 
