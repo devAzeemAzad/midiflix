@@ -1,5 +1,4 @@
 import { createRoot } from 'react-dom/client'
-import { SpeedInsights } from "@vercel/speed-insights/react"
 import './index.css'
 import App from './App.jsx'
 // Using HashRouter for GitHub Pages/static hosting compatibility (no server-side routing)
