@@ -57,7 +57,7 @@ const Navbar = () => {
               </button>
             )}
 
-            <div className={`${showMobileSearch ? 'fixed top-0 left-0 w-full h-16 z-[60] flex items-center px-4 bg-black/95' : 'hidden md:block relative'}`}>
+            <div className={`${showMobileSearch ? 'fixed top-0 left-0 w-full h-16 z-60 flex items-center px-4 bg-black/95' : 'hidden md:block relative'}`}>
               <form className="flex items-center relative w-full" onSubmit={(e) => e.preventDefault()}>
                 <input
                   type="text"

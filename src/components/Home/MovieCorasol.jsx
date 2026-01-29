@@ -110,7 +110,7 @@ const MovieCarousel = ({ moviesData = [] }) => {
           >
             {moviesData.map((item) => (
               <MovieCard
-                key={item?.id ?? `${item?.title ?? "item"}-${Math.random()}`}
+                key={item?.id ?? `${item    .title ?? "item"}-${Math.random()}`}
                 item={item}
                 onMouseEnter={(e) => handleMovieCardEnter(e, item)}
                 onMouseLeave={handleMovieCardLeave}
