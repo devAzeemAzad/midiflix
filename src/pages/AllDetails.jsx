@@ -198,7 +198,7 @@ const AllDetails = () => {
               </span>
               {details.runtime && (
                 <span className='bg-black/50 px-4 py-2 rounded-full font-semibold shadow border border-white/10'>
-                  ⏱️ {details.runtime} min
+                  ⏱️ {details.runtime } min
                 </span>
               )}
               {details.episode_run_time && details.episode_run_time.length > 0 && (
