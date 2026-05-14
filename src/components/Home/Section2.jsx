@@ -31,7 +31,10 @@ const MovieCategoriesSection = () => {
         language: "en-us",
         page: 1,
       });
+<<<<<<< HEAD
       console.log(moviesData)
+=======
+>>>>>>> 12c460f3e5cd1fea2bde5ff97aa27609aae68530
       setAllCategoryMovies(previousState => {
         const updatedState = { ...previousState }; // Copy old state (keep previous categories)
         updatedState[category.categoryEndpoint] = moviesData; // Add new category data
@@ -51,6 +54,10 @@ const MovieCategoriesSection = () => {
               <MovieCarouselHeader 
                 categoryType={category.categoryType} 
                 displayName={category.displayName}
+<<<<<<< HEAD
+=======
+                categorydata={category.categoryEndpoint}
+>>>>>>> 12c460f3e5cd1fea2bde5ff97aa27609aae68530
               />
               
               {/* CAROUSEL WITH MOVIES */}
