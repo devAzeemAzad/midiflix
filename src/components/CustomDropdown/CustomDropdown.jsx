@@ -10,12 +10,8 @@ const CustomDropdown = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
-<<<<<<< HEAD
-
-=======
   console.log(value);
   
->>>>>>> 12c460f3e5cd1fea2bde5ff97aa27609aae68530
   // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -29,11 +25,8 @@ const CustomDropdown = ({
   }, []);
 
   const selectedOption = options.find(opt => opt.value === value);
-<<<<<<< HEAD
-=======
   console.log(selectedOption);
   
->>>>>>> 12c460f3e5cd1fea2bde5ff97aa27609aae68530
 
   return (
     <div ref={dropdownRef} className="relative">

@@ -1,21 +1,13 @@
-<<<<<<< HEAD
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Menu, Search, X } from 'lucide-react';
-=======
 import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu,Search, X } from 'lucide-react';
 import SearchList from './SearchList';
->>>>>>> 12c460f3e5cd1fea2bde5ff97aa27609aae68530
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleLinkClick = () => setIsMenuOpen(false);
 
-<<<<<<< HEAD
-=======
   const [searchValue, setSearchValue] = useState("")
   const [showSearchList, setShowSearchList] = useState(false);
   const [showMobileSearch, setShowMobileSearch] = useState(false);
@@ -38,22 +30,10 @@ const Navbar = () => {
     setSearchValue(e.target.value)
     if(e.target.value) setShowSearchList(true);
   }
->>>>>>> 12c460f3e5cd1fea2bde5ff97aa27609aae68530
   const LinkClass =
     "text-gray-300 hover:text-white transition-colors duration-200 [&.active]:text-red-500 [&.active]:font-semibold";
 
   return (
-<<<<<<< HEAD
-    <nav className="fixed top-0 left-0 w-full z-50 bg-linear-to-b from-black/80 to-black/40 backdrop-blur-xl border-b border-red-500/20 transition-all duration-300">
-      <div className="max-w-400 mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          <Link to="/" onClick={handleLinkClick} className="flex items-center gap-3 group">
-            <span className="hidden sm:inline bg-linear-to-r from-red-500 to-orange-500 bg-clip-text uppercase  text-transparent font-bold text-[38px] tracking-wide">MidiFlix</span>
-          </Link>
-          <div className="hidden md:flex text-l items-center gap-8">
-            <Link to="/" className={LinkClass}>Home</Link>
-            <Link to="/movies" className={LinkClass}>Movies</Link>
-=======
     <nav className="fixed top-0 left-0 w-full z-500 bg-linear-to-b from-black/80 to-black/40 backdrop-blur-xl border-b border-red-500/20 transition-all duration-300">
       <div className="max-w-400 mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
@@ -63,29 +43,10 @@ const Navbar = () => {
           <div className="hidden md:flex text-l items-center gap-8">
             <Link to="/" className={LinkClass}>Home</Link>
             <Link to="/movie/now_playing" className={LinkClass}>Movies</Link>
->>>>>>> 12c460f3e5cd1fea2bde5ff97aa27609aae68530
             <Link to="/series" className={LinkClass}>Series</Link>
             <Link to="/anime" className={LinkClass}>Anime</Link>
           </div>    
           
-<<<<<<< HEAD
-          <div className="flex items-center gap-3">
-            <form className="hidden md:flex items-center relative">
-              <input
-                type="text"
-                placeholder="Search movies, series..."
-                className="px-5 py-2 rounded-full bg-white/10 hover:bg-white/20 border border-white/30 text-white placeholder:text-gray-400 focus:outline-none focus:border-red-500 focus:bg-white/20 transition-all duration-300 w-72"
-              />
-              <button
-                type="submit"
-                className="absolute right-2 text-gray-300 hover:text-red-500 transition-colors duration-200 p-2 rounded-full"
-                aria-label="Search"
-              >
-                <Search size={20} />
-              </button>
-            </form>
-            <div className="md:hidden flex items-center">
-=======
           <div className="flex items-center gap-3" ref={searchRef}>
             {!showMobileSearch && (
               <button 
@@ -135,7 +96,6 @@ const Navbar = () => {
               )}
             </div>
             <div className={`md:hidden flex items-center ${showMobileSearch ? 'hidden' : ''}`}>
->>>>>>> 12c460f3e5cd1fea2bde5ff97aa27609aae68530
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 className="text-white p-2 rounded-lg bg-white/10 hover:bg-white/20 border border-white/20 transition-all duration-200"
@@ -153,14 +113,6 @@ const Navbar = () => {
                 <Link to="/movies" className={`${LinkClass} px-4 py-2 rounded-lg hover:bg-white/5`} onClick={handleLinkClick}>Movies</Link>
                 <Link to="/series" className={`${LinkClass} px-4 py-2 rounded-lg hover:bg-white/5`} onClick={handleLinkClick}>Series</Link>
                 <Link to="/anime" className={`${LinkClass} px-4 py-2 rounded-lg hover:bg-white/5`} onClick={handleLinkClick}>Anime</Link>
-<<<<<<< HEAD
-                <hr className="border-white/10 my-2" />
-                <Link to="/new-releases" className={`${LinkClass} px-4 py-2 rounded-lg hover:bg-white/5`} onClick={handleLinkClick}>New Releases</Link>
-                <Link to="/popular" className={`${LinkClass} px-4 py-2 rounded-lg hover:bg-white/5`} onClick={handleLinkClick}>Popular</Link>
-                <Link to="/genres" className={`${LinkClass} px-4 py-2 rounded-lg hover:bg-white/5`} onClick={handleLinkClick}>Genres</Link>
-                <Link to="/favorites" className={`${LinkClass} px-4 py-2 rounded-lg hover:bg-white/5`} onClick={handleLinkClick}>Favorites</Link>
-=======
->>>>>>> 12c460f3e5cd1fea2bde5ff97aa27609aae68530
               </div>
             </div>
           )}
